@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة بيانات Normal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            flex-direction: column;
+            font-family: "Cairo", sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            width: calc(100% - 40px);
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: "Cairo", sans-serif;
+        }
+        input:focus, textarea:focus {
+            border-color: #0c6298;
+            box-shadow: 0 0 8px rgba(12, 98, 152, 0.2);
+        }
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+            font-family: "Cairo", sans-serif;
+        }
+        .btn-file-upload, button[type="submit"], button[type="button"] {
+            background-color: #0c6298;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-family: "Cairo", sans-serif;
+        }
+        .btn-file-upload:hover, button[type="submit"]:hover, button[type="button"]:hover {
+            background-color: #134869;
+        }
+
+
+      .custom-file-upload {
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+        background-color: #0c6298;
+        display: block; /* يجعل الزر يظهر في سطر جديد */
+        
+        cursor: pointer;
+        padding: 10px 12px;
+        margin: 10px auto; /* يمكنك تغيير الهامش حسب الحاجة */
+        border-radius: 5px;
+        text-align: center;
+      }
+      input[type="file"] {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>نموذج إضافة بيانات شخص طبيعي</h2>
+        <form action="{% url 'dashboard_n:create_normal' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="الاسم" required><br>
+            <input type="text" name="nickname" placeholder="الكنية" required><br>
+            <input type="text" name="place_of_birth" placeholder="مكان الولادة" required><br>
+            <input type="text" name="mother_name" placeholder="اسم الأم" required><br>
+            <input type="text" name="fathers_name" placeholder="اسم الأب" required><br>
+            <input type="text" name="location" placeholder="الموقع" required><br>
+            <input type="number" name="phone" placeholder="الهاتف" required><br>
+            <div>
+                <label for="commercial_registration_no">رقم السجل التجاري:</label>
+                <input
+                  type="number"
+                  id="commercial_registration_no"
+                  name="commercial_registration_no"
+                  placeholder="رقم السجل التجاري"
+                  required
+                />
+              </div>
+              <div>
+                <label for="date_of_commercial">تاريخ السجل التجاري:</label>
+                <input
+                  type="date"
+                  id="date_of_commercial"
+                  name="date_of_commercial"
+                  required
+                />
+              </div>
+              <div>
+                <label for="card_number_artisan">رقم بطاقة الحرفي:</label>
+                <input
+                  type="number"
+                  id="card_number_artisan"
+                  name="card_number_artisan"
+                  placeholder="رقم بطاقة الحرفي"
+                  required
+                />
+              </div>
+              <div>
+                <label for="date_of_artisan">تاريخ بطاقة الحرفي:</label>
+                <input
+                  type="date"
+                  id="date_of_artisan"
+                  name="date_of_artisan"
+                  required
+                />
+              </div>
+              <div>
+                <label for="written_request">طلب خطي:</label>
+                <span id="written_request_name" class="file-name"></span>
+                <input type="file" id="written_request" name="written_request" required>
+                <label for="written_request" class="custom-file-upload">اختر ملف</label>
+                
+              </div>
+              <div>
+                <label for="property_contract">عقد الملكية أو عقد الكراء:</label>
+                <span id="property_contract_name" class="file-name"></span>
+
+                <input type="file" id="property_contract" name="property_contract" required>
+                <label for="property_contract" class="custom-file-upload">اختر ملف</label>
+                
+              </div>
+              <div>
+                  <label for="site_plan">مخطط وضعية لموقع المنشأة:</label>
+                  <span id="site_plan_name" class="file-name"></span>
+
+                  <input type="file" id="site_plan" name="site_plan" required>
+                  <label for="site_plan" class="custom-file-upload">اختر ملف</label>
+              </div>
+              <div>
+                  <label for="block_plan">مخطط الكتلة يبين فيه جميع مرافق المشروع والبنايات المجاورة و جميع الشبكات مثل الطرق-خطوط الكهرباء و الغاز-قنوات المياه:</label>
+                  <span id="block_plan_name" class="file-name"></span>
+
+                  <input type="file" id="block_plan" name="block_plan" required>
+                  <label for="block_plan" class="custom-file-upload">اختر ملف</label>
+              </div>
+              <div>
+                <label for="technical_data_sheet">بطاقة تقنية للعتاد تبين فيهالحجم و القدرات:</label>
+                <span id="technical_data_sheet_name" class="file-name"></span>
+
+                <input type="file" id="technical_data_sheet" name="technical_data_sheet" required>
+                <label for="technical_data_sheet" class="custom-file-upload">اختر ملف</label>
+              </div>
+              <div>
+                <label for="report">تقرير يبين النقاط التالية:-منهاج الصنع -المواد الأولية المستخدمة ولا سيما المواد الخطيرة منها,المواد المنتجة,طرق التكفل بالنفايات التي ينتجها النشاط مثل الصلبة و السائلة ,الانبعاثات المختلقة و الناتجة عن النشاط مثل غازات و غبار و روائح وضجيج وكيفية التقليل منها</label>
+                <span id="report_name" class="file-name"></span>
+
+                <input type="file" id="report" name="report" required>
+                <label for="report" class="custom-file-upload">اختر ملف</label>
+              </div>
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+    <script>
+      // لتحديث النص بأسماء الملفات المختارة
+      document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function () {
+          let nameDisplayElement = document.getElementById(this.id + '_name');
+          if(nameDisplayElement && this.files.length > 0) {
+            nameDisplayElement.textContent = 'تم اختيار الملف: ' + this.files[0].name;
+          }
+        });
+      });
+      
+      // للتعامل مع الأزرار المخصصة لاختيار الملفات
+      document.querySelectorAll('.custom-file-upload').forEach(label => {
+        label.addEventListener('click', function (event) {
+          // نجلب حقل الإدخال المرتبط
+          let fileInput = document.getElementById(this.getAttribute('for'));
+          // نتحقق إذا كان الحدث قد تم تفعيله بواسطة الحقل نفسه (في حالة النقر مباشرة على الحقل)
+          // ونتجنب إعادة تفعيله
+          if (document.activeElement !== fileInput) {
+            fileInput.click();
+          }
+          // لمنع أي إجراء افتراضي قد يسبب تفعيل الحدث مرتين
+          event.preventDefault();
+        });
+      });
+    </script>
+    
+</body>
+</html>

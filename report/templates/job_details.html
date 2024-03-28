@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load bootstrap4 %} 
+{% block content %}
+<style>
+  .rtl {
+    direction: rtl;
+    text-align: right;
+  }
+</style>
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="bradcam_text">
+          <h3></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/ bradcam_area  -->
+
+<div class="job_details_area" >
+  <div class="container" >
+    <div class="row" >
+      <div class="col-lg-8"  style="width: 80%; margin: auto;">
+       
+        <div class="descript_wrap white-bg" style="border: solid;">
+          <div class="single_wrap">
+            <h4>ولاية: {{detail.state}}</h4>
+            <h4>دائرة: {{detail.district}}</h4>
+            <h4>بلدية: {{detail.municipality}}</h4>
+            <p>
+              منشأة مصنفة من الصنف {{detail.classification_of_the_establishment}}
+            </p>
+            <p>يهني السيد رأيس المجلس الشعبي البلدي عين تموشنت إلى علم الجمهور</p>
+            <p>
+                         وفقا للمنشور التنفيذي رقم {{detail.decree_number}}و المؤرخ في {{detail.date_of_decree_issuance}}
+            </p>
+            <p>
+              وتبقاً لقرار فتح التحقيق العلني رقم {{detail.public_inquiry_number}} المؤرخ في{{detail.date_of_public_inquiry_issuance}}
+            </p>
+            <p>
+               سيشرع في التحقي العلني لمدة أقصاها {{detail.duration}} يوماً ابتداء من  {{detail.start_date_of_the_duration}}
+            </p>
+            <p>
+              و إلى {{detail.end_date_of_the_duration}} لطلب السيد {{detail.request_of_mr}}
+            </p>
+            <p>
+               باستغلال المنشأة المصنفة {{detail.exploitation_of_the_classified_establishment }} الكائنة ب {{detail.located_in}} وفي
+            </p>
+            <p>
+              خلال مدة التحقيق يعين السيد {{detail.designation }} كمندوب محقق لاستلام
+            </p>
+            <p>
+              الملاحظات حول التأثيرات السلبية و الإيجابية المتعلقة بالمشروع وكل شخص لديه اقتراحات أو ملاحظات أو ضد المشروع يتصل بالبلدية أين سيجد سجلاً مفتوحاً لهذا الغرض 
+            </p>
+          </div>
+          
+          
+        <div class="apply_job_form white-bg">
+          <div class="apply_job_form white-bg">
+            <h4>أرسلك رأيك في هذا التحقيق</h4>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                  <button class="boxed-btn3 w-100" type="submit">أرسل الأن</button>
+                {% endbuttons %}
+            </form>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %} 
